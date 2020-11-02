@@ -23,6 +23,9 @@ def train(cmd, train, special, type, dest, line, full_type):
         output[f'CMD'] = 'CLEAR'
         clear()
         
+    elif cmd == "UPDATE":
+        os.system("update-git")
+        
     elif cmd == "SHOW":
         output[f'CMD'] = 'SHOW'
 
