@@ -37,15 +37,14 @@ def train(cmd, train, special, type, dest, line, full_type):
                 try:
                     special_frame = Image.open(train + "/SPECIAL/" + special + EXT)
                 except IOError:
-                    return f"[{train}] /SPECIA/{special}{EXT} not found"
+                    return f"[{train}] /SPECIAL/{special}{EXT} not found"
                 led1.paste(special_frame, (0, 0))
             else:
                 if dest != "" and type == "":
                     output[f'FULL_DEST'] = dest
                     ledframe = 1
-                    full_dest_frame = Image.open(
                     try:
-                        train + "/FULL_DEST/" + dest + EXT)
+                        full_dest_frame = Image.open(train + "/FULL_DEST/" + dest + EXT)
                     except IOError:
                         return f"[{train}] /FULL_DEST/{dest}{EXT} not found"
                     led1.paste(full_dest_frame, (0, 0))
@@ -116,7 +115,7 @@ def train(cmd, train, special, type, dest, line, full_type):
                 try:
                     special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
                 except IOError:
-                    return f"[{train}] /SPECIA/{special}{EXT} not found"
+                    return f"[{train}] /SPECIAL/{special}{EXT} not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
@@ -144,7 +143,7 @@ def train(cmd, train, special, type, dest, line, full_type):
                 try:
                     special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
                 except IOError:
-                    return f"[{train}] /SPECIA/{special}{EXT} not found"
+                    return f"[{train}] /SPECIAL/{special}{EXT} not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
@@ -172,7 +171,7 @@ def train(cmd, train, special, type, dest, line, full_type):
                 try:
                     special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
                 except IOError:
-                    return f"[{train}] /SPECIA/{special}{EXT} not found"
+                    return f"[{train}] /SPECIAL/{special}{EXT} not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
@@ -200,7 +199,7 @@ def train(cmd, train, special, type, dest, line, full_type):
                 try:
                     special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
                 except IOError:
-                    return f"[{train}] /SPECIA/{special}{EXT} not found"
+                    return f"[{train}] /SPECIAL/{special}{EXT} not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
@@ -228,7 +227,7 @@ def train(cmd, train, special, type, dest, line, full_type):
                 try:
                     special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
                 except IOError:
-                    return f"[{train}] /SPECIA/{special}{EXT} not found"
+                    return f"[{train}] /SPECIAL/{special}{EXT} not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
