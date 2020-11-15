@@ -71,10 +71,10 @@ def show(LEDFRAME, led1 , led2, led3, led4):
         temp_big.paste(grid, (0, 0, x, y), grid)
         temp_big.save("BIN/temp4_big.png") 
     
-    os.system("pkill -u daemon")
-    os.system("led-image-viewer -f -w 3 BIN/temp1.png BIN/temp2.png BIN/temp3.png BIN/temp4.png --led-rows="+rows+" --led-cols="+cols+" --led-chain="+chain_length+" --led-brightness="+brightness+" --led-gpio-mapping="+mapping+" --led-rgb-sequence="+rgb_sequence+" --led-slowdown-gpio="+led_slowdown_gpio+" --led-daemon")
+    #os.system("pkill -u daemon")
+    #os.system("led-image-viewer -f -w 3 BIN/temp1.png BIN/temp2.png BIN/temp3.png BIN/temp4.png --led-rows="+rows+" --led-cols="+cols+" --led-chain="+chain_length+" --led-brightness="+brightness+" --led-gpio-mapping="+mapping+" --led-rgb-sequence="+rgb_sequence+" --led-slowdown-gpio="+led_slowdown_gpio+" --led-daemon")
     return
 
 def clear():
-    os.system("pkill -u daemon")
+    #os.system("pkill -u daemon")
     return
