@@ -5,27 +5,27 @@ from display import show, clear
 # Init variable for sys option
 
 # Create const
-EXT=".png"
+EXT = ".png"
 LEDS_SIZE = 128, 32
 
 # Create variable
-output= {}
+output = {}
+
 
 def train(cmd, train, special, type, dest, line, full_type):
     output.clear()
     led1 = Image.new("RGB", (LEDS_SIZE), (0, 0, 0))
-    led2 = Image.new("RGB", (LEDS_SIZE), (0, 0, 0)) 
-    led3 = Image.new("RGB", (LEDS_SIZE), (0, 0, 0)) 
+    led2 = Image.new("RGB", (LEDS_SIZE), (0, 0, 0))
+    led3 = Image.new("RGB", (LEDS_SIZE), (0, 0, 0))
     led4 = Image.new("RGB", (LEDS_SIZE), (0, 0, 0))
-
 
     if cmd == "CLEAR":
         output[f'CMD'] = 'CLEAR'
         clear()
-        
+
     elif cmd == "UPDATE":
         os.system("update-git")
-        
+
     elif cmd == "SHOW":
         output[f'CMD'] = 'SHOW'
 
@@ -33,59 +33,72 @@ def train(cmd, train, special, type, dest, line, full_type):
             output[f'{train} ROM VER'] = '2.3 [TEST]'
             if special != "" and type == "":
                 output[f'SPECIAL'] = special
-                ledframe = 1 
-                special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
-                led1.paste(special_frame, (0,0))
+                ledframe = 1
+                try:
+                    special_frame = Image.open(
+                        train + "/SPECIAL/" + special + EXT)
+                except IOError:
+                    return f"[{train}] SPECIAL File not found"
+                led1.paste(special_frame, (0, 0))
             else:
                 if dest != "" and type == "":
                     output[f'FULL_DEST'] = dest
-                    ledframe = 1 
-                    full_dest_frame  = Image.open(train + "/FULL_DEST/" + dest + EXT)
-                    led1.paste(full_dest_frame, (0,0))
+                    ledframe = 1
+                    full_dest_frame = Image.open(
+                        train + "/FULL_DEST/" + dest + EXT)
+                    led1.paste(full_dest_frame, (0, 0))
                 if line != "" and type == "":
                     output[f'FULL_LINE'] = line
-                    ledframe = 1 
+                    ledframe = 1
                     line_frame = Image.open(train + "/FULL_LINE/" + line + EXT)
-                    led1.paste(line_frame, (0,0))
+                    led1.paste(line_frame, (0, 0))
                 if type != "" and dest == "":
                     output[f'FULL_TYPE'] = type
-                    ledframe = 1 
-                    full_type_frame  = Image.open(train + "/FULL_TYPE/" + type + EXT)
-                    led1.paste(full_type_frame, (0,0))
+                    ledframe = 1
+                    full_type_frame = Image.open(
+                        train + "/FULL_TYPE/" + type + EXT)
+                    led1.paste(full_type_frame, (0, 0))
                 if type != "" and dest != "":
                     output[f'TYPE'] = type
                     ledframe = 2
-                    type_jp_frame = Image.open(train + "/TYPE/" + type + "_JP" + EXT)
-                    type_en_frame = Image.open(train + "/TYPE/" + type + "_EN" + EXT)
-                    led1.paste(type_jp_frame, (0,0))
-                    led2.paste(type_en_frame, (0,0))
+                    type_jp_frame = Image.open(
+                        train + "/TYPE/" + type + "_JP" + EXT)
+                    type_en_frame = Image.open(
+                        train + "/TYPE/" + type + "_EN" + EXT)
+                    led1.paste(type_jp_frame, (0, 0))
+                    led2.paste(type_en_frame, (0, 0))
                     output[f'DEST'] = dest
                     dest_frame = Image.open(train + "/DEST/" + dest + EXT)
-                    led1.paste(dest_frame, (48,0))
-                    led2.paste(dest_frame, (48,0))
-                    if line != "" :
+                    led1.paste(dest_frame, (48, 0))
+                    led2.paste(dest_frame, (48, 0))
+                    if line != "":
                         output[f'LINE'] = line
                         ledframe = 3
                         line_frame = Image.open(train + "/LINE/" + line + EXT)
-                        led3.paste(type_jp_frame, (0,0))
-                        led3.paste(line_frame, (48,0))
+                        led3.paste(type_jp_frame, (0, 0))
+                        led3.paste(line_frame, (48, 0))
                         if full_type == "TRUE":
                             output[f'FULL_TYPE'] = full_type
                             ledframe = 4
-                            full_type_frame  = Image.open(train + "/FULL_TYPE/" + type + EXT)
-                            led4.paste(full_type_frame, (0,0))
+                            full_type_frame = Image.open(
+                                train + "/FULL_TYPE/" + type + EXT)
+                            led4.paste(full_type_frame, (0, 0))
                     if full_type == "TRUE":
                         output[f'FULL_TYPE'] = full_type
                         ledframe = 3
-                        full_type_frame  = Image.open(train + "/FULL_TYPE/" + type + EXT)
-                        led3.paste(full_type_frame, (0,0))
+                        full_type_frame = Image.open(
+                            train + "/FULL_TYPE/" + type + EXT)
+                        led3.paste(full_type_frame, (0, 0))
 
         elif train == "RM1000":
             output[f'{train} ROM VER'] = '1.1 [FINAL]'
             if special != "":
                 output[f'SPECIAL'] = special
                 ledframe = 1
-                special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                try:
+                    special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                except IOError:
+                    return f"[{train}] SPECIAL File not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
@@ -104,7 +117,10 @@ def train(cmd, train, special, type, dest, line, full_type):
             if special != "":
                 output[f'SPECIAL'] = special
                 ledframe = 1
-                special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                try:
+                    special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                except IOError:
+                    return f"[{train}] SPECIAL File not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
@@ -123,7 +139,10 @@ def train(cmd, train, special, type, dest, line, full_type):
             if special != "":
                 output[f'SPECIAL'] = special
                 ledframe = 1
-                special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                try:
+                    special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                except IOError:
+                    return f"[{train}] SPECIAL File not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
@@ -142,7 +161,10 @@ def train(cmd, train, special, type, dest, line, full_type):
             if special != "":
                 output[f'SPECIAL'] = special
                 ledframe = 1
-                special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                try:
+                    special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                except IOError:
+                    return f"[{train}] SPECIAL File not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
@@ -161,7 +183,10 @@ def train(cmd, train, special, type, dest, line, full_type):
             if special != "":
                 output[f'SPECIAL'] = special
                 ledframe = 1
-                special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                try:
+                    special_frame  = Image.open(train + "/SPECIAL/" + special + EXT)
+                except IOError:
+                    return f"[{train}] SPECIAL File not found"
                 led1.paste(special_frame, (0,0))
             else:
                 if type != "":
