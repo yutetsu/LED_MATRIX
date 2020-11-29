@@ -1,4 +1,4 @@
-# LED_MATRIX
+# LED_MATRIX V2
  
 # This is still in test.
 
@@ -8,3 +8,7 @@ The program shows real destination panel from a Japanese railway
 
 You can use docker [still in test]
 docker run --detach --name led-matrix -p 5000:5000 --privileged yutetsudo/led-matrix:debug
+
+
+# /!\ Important
+i am currently developing the V3 which add a better E233 led rom emulation with scrolling text
