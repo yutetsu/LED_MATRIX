@@ -1,3 +1,5 @@
+# /!\ I almost finish the V3  
+
 # LED_MATRIX V2
  
 # This is still in test.
